@@ -22,7 +22,7 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
 
 
     document.getElementById('live-chat').removeAttribute('hidden');
-    const namebox = document.getElementById('namebox');
+    //    const namebox = document.getElementById('namebox');
     const textbox = document.getElementById('textbox');
     const submit_button = document.getElementById('room_submit');
     const conversation = document.getElementById('conversation');
@@ -34,6 +34,10 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
             submit_button.click();
         }
     };
+
+    function scrollToBottom() {
+        conversation.scrollTop = conversation.scrollHeight - conversation.clientHeight;
+    }
 
     function submit() {
         msg = textbox.value;
@@ -49,14 +53,15 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
         var newmsg = document.createElement("div");
         var msgcontent = document.createElement("p");
         name.appendChild(document.createTextNode(message.from.toString().substring(30)));
-        newmsg.class="chat-message";
+        newmsg.class = "chat-message";
         msgcontent.appendChild(document.createTextNode(message.data.toString()));
         newmsg.appendChild(name);
         newmsg.appendChild(msgcontent);
         conversation.appendChild(newmsg);
+        scrollToBottom();
     }
-    
-    
+
+
 
 
 
@@ -69,7 +74,7 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
 
     // send and receive messages
 
-    room.on('peer joined', (peer) => room.sendTo(peer,'Hello ' + peer.substring(30) + '!'));
+    room.on('peer joined', (peer) => room.sendTo(peer, 'Hello ' + peer.substring(30) + '!'));
     room.on('peer left', (peer) => room.sendTo('peer ' + peer.substring(30) + ' left'));
 
     room.on('message', (message) => addmsg(message));

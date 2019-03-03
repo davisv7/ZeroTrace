@@ -18,11 +18,6 @@ body {
 
 a { text-decoration: none; }
 
-fieldset {
-	border: 0;
-	margin: 0;
-	padding: 0;
-}
 
 h4, h5 {
 	line-height: 1.5em;
@@ -39,12 +34,7 @@ hr {
     min-height: 1px;
 }
 
-img {
-    border: 0;
-    display: block;
-    height: auto;
-    max-width: 100%;
-}
+
 
 input {
 	border: 0;
@@ -57,12 +47,7 @@ input {
 
 p { margin: 0; }
 
-.clearfix { *zoom: 1; } /* For IE 6/7 */
-.clearfix:before, .clearfix:after {
-    content: "";
-    display: table;
-}
-.clearfix:after { clear: both; }
+
 
 /* ---------- LIVE-CHAT ---------- */
 
@@ -70,8 +55,8 @@ p { margin: 0; }
 	bottom: 0;
 	font-size: 12px;
 	right: 24px;
-	position: fixed;
-	width: 300px;
+	position: absolute;
+	width: 90%;
 }
 
 #live-chat header {
@@ -100,81 +85,36 @@ p { margin: 0; }
 	font-size: 10px;
 }
 
-#live-chat form {
-	padding: 24px;
-}
+
 
 #live-chat input[type="text"] {
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	padding: 8px;
 	outline: none;
-	width: 234px;
+	width: 90%;
+    height: 100%;
 }
 
-.chat-message-counter {
-	background: #e62727;
-	border: 1px solid #fff;
-	border-radius: 50%;
-	display: none;
-	font-size: 12px;
-	font-weight: bold;
-	height: 28px;
-	left: 0;
-	line-height: 28px;
-	margin: -15px 0 0 -15px;
-	position: absolute;
-	text-align: center;
-	top: 0;
-	width: 28px;
-}
 
-.chat-close {
-	background: #1b2126;
-	border-radius: 50%;
-	color: #fff;
-	display: block;
-	float: right;
-	font-size: 10px;
-	height: 16px;
-	line-height: 16px;
-	margin: 2px 0 0 0;
-	text-align: center;
-	width: 16px;
-}
+
+
 
 .chat {
 	background: #fff;
 }
 
 .chat-history {
-	height: 252px;
+	height: 400px;
 	padding: 8px 24px;
-	overflow-y: scroll;
+	overflow: scroll;
 }
 
-.chat-message {
-	margin: 16px 0;
-}
 
-.chat-message img {
-	border-radius: 50%;
-	float: left;
-}
 
-.chat-message-content {
-	margin-left: 56px;
-}
 
-.chat-time {
-	float: right;
-	font-size: 10px;
-}
 
-.chat-feedback {
-	font-style: italic;	
-	margin: 0 0 0 80px;
-}
+
 
 
 
@@ -187,14 +127,12 @@ p { margin: 0; }
 <body>
 
 
-    <div id="live-chat" hidden >
-        <header class="clearfix">
+    <div id="live-chat"  >
+        <header>
 
-            <a href="#" class="chat-close">x</a>
 
-            <h4>John Doe</h4>
+            IPFS Chat
 
-            <span class="chat-message-counter">3</span>
 
         </header>
         <div class="chat">
@@ -202,8 +140,8 @@ p { margin: 0; }
 
             </div>
             <div id='msgbox'>
-                a1ias:
-                <input id="namebox" type="text" placeholder='yomomma'>
+<!--                a1ias:-->
+<!--                <input id="namebox" type="text" placeholder='yomomma'>-->
                 Room Message:
                 <input id="textbox" type="text" placeholder='message'>
                 <input id="room_submit" type="submit" value="Submit">
