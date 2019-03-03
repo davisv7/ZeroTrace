@@ -49,11 +49,11 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
 
     function addmsg(message) {
         console.log('got message from ' + message.from + ': ' + message.data.toString())
-        var name = document.createElement("h5");
         var newmsg = document.createElement("div");
+        var name = document.createElement("h5");
         var msgcontent = document.createElement("p");
         name.appendChild(document.createTextNode(message.from.toString().substring(30)));
-        newmsg.class = "chat-message";
+        newmsg.classList.add("chat-message");
         msgcontent.appendChild(document.createTextNode(message.data.toString()));
         newmsg.appendChild(name);
         newmsg.appendChild(msgcontent);
