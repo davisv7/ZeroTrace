@@ -21,21 +21,42 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
     }
 
 
-
-    const submit_button = document.getElementById('room_submit');
+    document.getElementById('live-chat').removeAttribute('hidden');
+    const namebox = document.getElementById('namebox');
     const textbox = document.getElementById('textbox');
-    const thanks = document.getElementById('thanks');
+    const submit_button = document.getElementById('room_submit');
+    const conversation = document.getElementById('conversation');
 
     submit_button.onclick = submit;
+    textbox.onkeydown = function (e) {
+        if (e.keyCode == 13) { //if enter key 
+            // Cancel the default action, if needed
+            submit_button.click();
+        }
+    };
 
     function submit() {
         msg = textbox.value;
         console.log(msg);
         room.broadcast(msg);
-        thanks.removeAttribute('hidden');
         textbox.value = '';
 
     }
+
+    function addmsg(message) {
+        console.log('got message from ' + message.from + ': ' + message.data.toString())
+        var name = document.createElement("h5");
+        var newmsg = document.createElement("div");
+        var msgcontent = document.createElement("p");
+        name.appendChild(document.createTextNode(message.from.toString().substring(30)));
+        newmsg.class="chat-message";
+        msgcontent.appendChild(document.createTextNode(message.data.toString()));
+        newmsg.appendChild(name);
+        newmsg.appendChild(msgcontent);
+        conversation.appendChild(newmsg);
+    }
+    
+    
 
 
 
@@ -43,17 +64,16 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
 
     const room = Room(ipfs, 'ipfs-pubsub-demo')
 
-    room.on('peer joined', (peer) => console.log('peer ' + peer + ' joined'))
-    room.on('peer left', (peer) => console.log('peer ' + peer + ' left'))
+    room.on('peer joined', (peer) => console.log('peer ' + peer.substring(30) + ' joined'));
+    room.on('peer left', (peer) => console.log('peer ' + peer.substring(30) + ' left'));
 
     // send and receive messages
 
-    room.on('peer joined', (peer) => room.sendTo(peer, 'Hello ' + peer + '!'))
-    room.on('message', (message) => console.log('got message from ' + message.from + ': ' + message.data.toString()))
+    room.on('peer joined', (peer) => room.sendTo(peer,'Hello ' + peer.substring(30) + '!'));
+    room.on('peer left', (peer) => room.sendTo('peer ' + peer.substring(30) + ' left'));
 
-    // broadcast message every 2 seconds
+    room.on('message', (message) => addmsg(message));
 
-    //    setInterval(() => room.broadcast('hey everyone!'), 2000)
 }))
 
 function repo() {
