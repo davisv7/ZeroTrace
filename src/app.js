@@ -21,7 +21,7 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
     }
 
 
-    document.getElementById('live-chat').removeAttribute('hidden');
+//    document.getElementById('live-chat').removeAttribute('hidden');
     const namebox = document.getElementById('namebox');
     const textbox = document.getElementById('textbox');
     const submit_button = document.getElementById('room_submit');
