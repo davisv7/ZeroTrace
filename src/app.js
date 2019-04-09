@@ -35,9 +35,9 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
         }
     };
 
-    function scrollToBottom() {
-        conversation.scrollTop = conversation.scrollHeight - conversation.clientHeight;
-    }
+//    function scrollToBottom() {
+//        conversation.scrollTop = conversation.scrollHeight - conversation.clientHeight;
+//    }
 
     function submit() {
         msg = textbox.value;
@@ -58,7 +58,7 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
         newmsg.appendChild(name);
         newmsg.appendChild(msgcontent);
         conversation.appendChild(newmsg);
-        scrollToBottom();
+//        scrollToBottom();
     }
 
 
